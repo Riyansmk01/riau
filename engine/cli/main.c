@@ -8,8 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-#define VERSION "0.1.0"
+#define VERSION "0.1.1"
 
 static void print_banner() {
   printf("Riau Programming Language v%s\n", VERSION);
