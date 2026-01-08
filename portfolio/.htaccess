@@ -1,0 +1,8 @@
+Options +ExecCGI
+AddHandler cgi-script .riau
+DirectoryIndex index.riau index.html
+
+# Security
+<FilesMatch "\.(riau)$">
+    Require all granted
+</FilesMatch>

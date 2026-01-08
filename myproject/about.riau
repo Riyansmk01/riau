@@ -1,0 +1,5 @@
+#!/usr/bin/env riau
+print("Content-Type: text/html; charset=UTF-8\n\n")
+print("^<h1^>About myproject^</h1^>")
+print("^<p^>This is the about page.^</p^>")
+print("^<a href='index.riau'^>Back to Home^</a^>")

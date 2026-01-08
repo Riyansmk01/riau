@@ -1,0 +1,7 @@
+#!/usr/bin/env riau
+print("Content-Type: application/json; charset=UTF-8\n\n")
+print("{")
+print("  \"status\": \"success\",")
+print("  \"message\": \"API endpoint working!\",")
+print("  \"project\": \"portfolio\"")
+print("}")
