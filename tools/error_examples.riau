@@ -1,0 +1,52 @@
+// Error examples untuk testing error messages
+// This file contains intentional errors to test error reporting
+
+// Error 1: Undefined variable (typo)
+print("Test 1: Undefined variable")
+let username = "john"
+let email = usrname + "@example.com"  // Typo: usrname instead of username
+
+// Error 2: Undefined function
+print("Test 2: Undefined function")
+let result = calculate_sum(10, 20)  // Function not defined
+
+// Error 3: Type mismatch
+print("Test 3: Type mismatch")
+let number = 42
+let text = "Hello"
+let invalid = number + text  // Can't add number and string
+
+// Error 4: Null safety
+print("Test 4: Null safety")
+let user? = null
+print(user.name)  // Accessing property of null
+
+// Error 5: Already defined
+print("Test 5: Already defined")
+let count = 10
+let count = 20  // Redefinition
+
+// Error 6: Syntax error - missing parenthesis
+print("Test 6: Syntax error")
+let value = (10 + 20  // Missing closing parenthesis
+
+// Error 7: Syntax error - missing brace
+print("Test 7: Syntax error")
+if true {
+    print("Hello")
+// Missing closing brace
+
+// Error 8: Wrong keyword
+print("Test 8: Wrong keyword")
+var name = "test"  // Should be 'let' not 'var'
+
+// Error 9: Undefined variable with similar name
+print("Test 9: Similar variable name")
+let firstName = "John"
+let lastName = "Doe"
+let fullName = first_name + " " + lastName  // Typo: first_name vs firstName
+
+// Error 10: Function call typo
+print("Test 10: Function call typo")
+let text = "hello"
+let upper = str_Upper(text)  // Typo: str_Upper vs str_upper

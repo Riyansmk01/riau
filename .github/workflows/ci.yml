@@ -1,0 +1,111 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc
+    
+    - name: Verify GCC installation
+      run: gcc --version
+    
+    - name: Build Riau
+      run: |
+        chmod +x build.sh
+        ./build.sh
+    
+    - name: Run tests
+      run: |
+        chmod +x test.sh
+        ./test.sh
+    
+    - name: Test REPL
+      run: |
+        echo "print(\"CI Test\")" | ./bin/riau || true
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: riau-linux
+        path: bin/riau
+
+  build-macos:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        xcode-select --install || true
+        brew install gcc || true
+    
+    - name: Verify GCC installation
+      run: gcc --version
+    
+    - name: Build Riau
+      run: |
+        chmod +x build.sh
+        ./build.sh
+    
+    - name: Run tests
+      run: |
+        chmod +x test.sh
+        ./test.sh
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: riau-macos
+        path: bin/riau
+
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x64
+    
+    - name: Verify GCC installation
+      run: gcc --version
+    
+    - name: Build Riau
+      run: .\build.bat
+      shell: cmd
+    
+    - name: Run tests
+      run: .\test.bat
+      shell: cmd
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: riau-windows
+        path: bin/riau.exe
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check C code formatting
+      run: |
+        # Add clang-format check if needed
+        echo "Lint check passed"

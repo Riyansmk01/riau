@@ -1,0 +1,7 @@
+#!/usr/bin/env riau
+// Test shebang support
+print("Shebang works!")
+print("This script can be executed directly on Unix systems")
+
+let message = "Hello from executable Riau script!"
+print(message)

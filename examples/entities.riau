@@ -1,0 +1,33 @@
+// Entity (Data Model) Example
+entity User {
+  id: int
+  email: string
+  name: string
+  active: bool = true
+  created_at: string
+}
+
+entity Post {
+  id: int
+  title: string
+  content: string
+  author_id: int
+  published: bool = false
+}
+
+// Using entities
+let user = User {
+  id: 1,
+  email: "riyan@example.com",
+  name: "Riyan",
+  created_at: "2026-01-07"
+}
+
+let post = Post {
+  id: 1,
+  title: "Hello Riau",
+  content: "This is my first post in Riau language",
+  author_id: user.id
+}
+
+print(user.name + " created post: " + post.title)

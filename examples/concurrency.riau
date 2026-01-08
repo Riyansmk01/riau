@@ -1,0 +1,48 @@
+// Concurrency Example
+use http.server
+
+// Spawn concurrent tasks
+spawn {
+  // Handle background job
+  processQueue()
+}
+
+spawn {
+  // Send email notifications
+  sendNotifications()
+}
+
+// Main server
+server.start(8080) {
+  route.get("/") {
+    return "Server is running"
+  }
+  
+  route.post("/task") {
+    let data = request.json()
+    
+    // Spawn async task
+    spawn {
+      processTask(data)
+    }
+    
+    return success("Task queued")
+  }
+}
+
+fn processQueue() {
+  for task in queue.getPending() {
+    process(task)
+  }
+}
+
+fn sendNotifications() {
+  for user in users.getActive() {
+    email.send(user.email, "Hello from Riau!")
+  }
+}
+
+fn processTask(data) {
+  // Heavy processing
+  log("Processing: " + data.name)
+}

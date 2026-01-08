@@ -1,0 +1,40 @@
+// Error Handling Example
+use db.mysql
+
+fn connectDatabase() {
+  try {
+    db.connect("localhost", "mydb", "user", "pass")
+    print("Database connected successfully")
+  } catch DbError as e {
+    log("Database connection failed: " + e.message)
+    return false
+  }
+  return true
+}
+
+fn fetchUser(id: int) {
+  try {
+    let user? = db.table("users").find(id)
+    
+    if user {
+      return user
+    } else {
+      throw NotFoundError("User not found")
+    }
+  } catch DbError as e {
+    log("Database error: " + e.message)
+    return null
+  } catch NotFoundError as e {
+    log(e.message)
+    return null
+  }
+}
+
+// Usage
+if connectDatabase() {
+  let user = fetchUser(123)
+  
+  if user {
+    print("User: " + user.name)
+  }
+}

@@ -1,0 +1,56 @@
+# .gitignore for Riau Programming Language
+
+# Build artifacts
+build/
+bin/
+*.exe
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.vs/
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and debugging
+*.log
+error.txt
+error_vm.txt
+debug.txt
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# Test outputs
+test_output/
+coverage/
+
+# Package managers (future)
+node_modules/
+vendor/
+
+# Environment
+.env
+.env.local
+
+# Documentation builds
+docs/_build/
+site/

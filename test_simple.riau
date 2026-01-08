@@ -1,0 +1,5 @@
+// Test sederhana
+let x = 5
+let y = 10
+let hasil = x + y
+print(hasil)

@@ -1,0 +1,4 @@
+// Test print function
+print("Hello from Riau!")
+print("Testing numbers: ")
+print(42)

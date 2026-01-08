@@ -1,0 +1,90 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Riau",
+    "scopeName": "source.riau",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#functions"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.riau",
+                    "match": "//.*$"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.riau",
+                    "match": "\\b(if|else|for|in|while|return|try|catch|as)\\b"
+                },
+                {
+                    "name": "keyword.other.riau",
+                    "match": "\\b(let|fn|entity|use|spawn)\\b"
+                },
+                {
+                    "name": "constant.language.riau",
+                    "match": "\\b(true|false|null)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.riau",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.riau",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.riau",
+                    "match": "\\b\\d+(\\.\\d+)?\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.riau",
+                    "match": "(\\+|\\-|\\*|\\/|%|==|!=|<|<=|>|>=|&&|\\|\\||!|=|=>)"
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.riau",
+                    "match": "\\b(print|log|env|type_of|len|str_concat|str_length|str_upper|str_lower|array_push|array_pop|array_length|math_abs|math_floor|math_ceil|math_round)\\b"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,33 @@
+// API Example - Simple REST-like endpoint
+// Demonstrates: JSON-like output, conditionals, string operations
+
+print("Content-Type: application/json")
+print("")
+print("")
+
+// Get request info
+let method = env("REQUEST_METHOD")
+let query = env("QUERY_STRING")
+
+// Simple JSON response
+print("{")
+print("  \"status\": \"success\",")
+print("  \"message\": \"Riau API v0.1.0\",")
+print("  \"data\": {")
+print("    \"method\": \"" + method + "\",")
+print("    \"query\": \"" + query + "\",")
+print("    \"features\": [")
+print("      \"CGI Support\",")
+print("      \"Null Safety\",")
+print("      \"Type Inference\",")
+print("      \"Bytecode VM\"")
+print("    ],")
+print("    \"stats\": {")
+print("      \"built_in_functions\": 16,")
+print("      \"data_types\": 7,")
+print("      \"opcodes\": 50,")
+print("      \"php_compatibility\": \"60%\"")
+print("    }")
+print("  },")
+print("  \"timestamp\": \"2026-01-08T17:18:00Z\"")
+print("}")

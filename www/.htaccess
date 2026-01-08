@@ -1,0 +1,18 @@
+# Enable CGI execution for .riau files
+Options +ExecCGI
+AddHandler cgi-script .riau
+
+# Set index.riau as directory index
+DirectoryIndex index.riau index.html
+
+# Optional: Error pages
+# ErrorDocument 404 /404.riau
+# ErrorDocument 500 /500.riau
+
+# Security: Prevent directory listing
+Options -Indexes
+
+# Optional: Force HTTPS (uncomment if using SSL)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

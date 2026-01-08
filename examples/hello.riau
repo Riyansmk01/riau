@@ -1,0 +1,7 @@
+// Hello World in Riau
+let message = "Hello, World!"
+print(message)
+
+let name = "Riau"
+let version = 0.1
+print("Welcome to " + name + " v" + version)

@@ -1,0 +1,11 @@
+// Simple arithmetic test
+let a = 10
+let b = 20
+let sum = a + b
+print(sum)
+
+// Test multiplication
+let x = 5
+let y = 6
+let product = x * y
+print(product)

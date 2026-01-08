@@ -1,0 +1,46 @@
+// Web Server Example - Matching Blueprint
+use http.server
+use db.mysql
+
+server.start(8080) {
+
+  route.get("/users") {
+    return json(db.table("users").get())
+  }
+
+  route.post("/users") {
+    let data = request.json()
+    db.table("users").insert(data)
+    return success("User created")
+  }
+
+  route.get("/users/:id") {
+    let id = request.params.id
+    let user? = db.table("users").find(id)
+    
+    if user {
+      return json(user)
+    } else {
+      return error("User not found", 404)
+    }
+  }
+
+  route.put("/users/:id") {
+    let id = request.params.id
+    let data = request.json()
+    
+    try {
+      db.table("users").update(id, data)
+      return success("User updated")
+    } catch DbError as e {
+      return error(e.message, 500)
+    }
+  }
+
+  route.delete("/users/:id") {
+    let id = request.params.id
+    db.table("users").delete(id)
+    return success("User deleted")
+  }
+
+}

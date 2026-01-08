@@ -1,0 +1,28 @@
+#!/usr/bin/env riau
+// API endpoint - api/users.riau
+
+print("Content-Type: application/json; charset=UTF-8\n\n")
+
+print("{")
+print("  \"status\": \"success\",")
+print("  \"message\": \"Riau API v0.1.1\",")
+print("  \"data\": {")
+print("    \"users\": [")
+print("      {")
+print("        \"id\": 1,")
+print("        \"name\": \"John Doe\",")
+print("        \"email\": \"john@example.com\"")
+print("      },")
+print("      {")
+print("        \"id\": 2,")
+print("        \"name\": \"Jane Smith\",")
+print("        \"email\": \"jane@example.com\"")
+print("      }")
+print("    ]")
+print("  },")
+print("  \"meta\": {")
+print("    \"request_method\": \"" + env("REQUEST_METHOD") + "\",")
+print("    \"server\": \"" + env("SERVER_SOFTWARE") + "\",")
+print("    \"timestamp\": \"2026-01-08T18:00:00Z\"")
+print("  }")
+print("}")

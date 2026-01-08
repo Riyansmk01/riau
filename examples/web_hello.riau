@@ -1,0 +1,35 @@
+// Simple web hello world for Riau
+// This script demonstrates CGI-style web output
+
+// Send HTTP headers
+print("Content-Type: text/html")
+print("")
+print("")
+
+// HTML content
+print("<html>")
+print("<head>")
+print("<title>Riau Web Programming</title>")
+print("<style>")
+print("body { font-family: Arial, sans-serif; margin: 40px; background: #f0f0f0; }")
+print("h1 { color: #333; }")
+print(".info { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }")
+print("</style>")
+print("</head>")
+print("<body>")
+print("<h1>🚀 Hello from Riau!</h1>")
+print("<div class='info'>")
+print("<p><strong>Welcome to Riau Programming Language</strong></p>")
+print("<p>This page is generated dynamically using Riau's CGI capabilities.</p>")
+print("<p>Request Method: ")
+print(env("REQUEST_METHOD"))
+print("</p>")
+print("<p>Server Software: ")
+print(env("SERVER_SOFTWARE"))
+print("</p>")
+print("<p>Your Username: ")
+print(env("USERNAME"))
+print("</p>")
+print("</div>")
+print("</body>")
+print("</html>")

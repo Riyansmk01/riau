@@ -1,0 +1,72 @@
+// Comprehensive test program for Riau
+// Tests: variables, functions, operators, control flow
+
+// Test 1: Variables and types
+let name = "Riau"
+let version = 0.1
+let ready = true
+
+print("=== Test 1: Variables ===")
+print("Language: " + name)
+print("Version: " + version)
+print("Ready: " + ready)
+
+// Test 2: Arithmetic
+let a = 10
+let b = 20
+let sum = a + b
+let diff = b - a
+let product = a * b
+let quotient = b / a
+
+print("\n=== Test 2: Arithmetic ===")
+print("10 + 20 = " + sum)
+print("20 - 10 = " + diff)
+print("10 * 20 = " + product)
+print("20 / 10 = " + quotient)
+
+// Test 3: Comparison
+let x = 15
+let y = 25
+
+print("\n=== Test 3: Comparison ===")
+print("15 < 25 = " + (x < y))
+print("15 > 25 = " + (x > y))
+print("15 == 15 = " + (x == x))
+print("15 != 25 = " + (x != y))
+
+// Test 4: Functions
+fn double(n) {
+  return n * 2
+}
+
+fn triple(n) => n * 3
+
+print("\n=== Test 4: Functions ===")
+print("double(5) = " + double(5))
+print("triple(5) = " + triple(5))
+
+// Test 5: Control flow
+print("\n=== Test 5: Control Flow ===")
+
+let score = 85
+
+if score >= 90 {
+  print("Grade: A")
+} else {
+  if score >= 80 {
+    print("Grade: B")
+  } else {
+    print("Grade: C")
+  }
+}
+
+// Test 6: Loops
+print("\n=== Test 6: Loops ===")
+let numbers = [1, 2, 3, 4, 5]
+
+for num in numbers {
+  print("Number: " + num)
+}
+
+print("\n=== All tests completed! ===")

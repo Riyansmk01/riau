@@ -1,0 +1,56 @@
+// Web form handling example for Riau
+// Demonstrates GET and POST request handling
+
+// Send HTTP headers
+print("Content-Type: text/html")
+print("")
+print("")
+
+// Get request method and query string
+let method = env("REQUEST_METHOD")
+let query = env("QUERY_STRING")
+
+// HTML start
+print("<html>")
+print("<head>")
+print("<title>Riau Form Example</title>")
+print("<style>")
+print("body { font-family: Arial, sans-serif; margin: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }")
+print(".container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }")
+print("h1 { color: #667eea; margin-top: 0; }")
+print("form { margin: 20px 0; }")
+print("input[type=text] { width: 100%; padding: 10px; margin: 10px 0; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box; }")
+print("input[type=submit] { background: #667eea; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }")
+print("input[type=submit]:hover { background: #764ba2; }")
+print(".result { background: #f0f7ff; padding: 15px; border-left: 4px solid #667eea; margin: 20px 0; }")
+print("</style>")
+print("</head>")
+print("<body>")
+print("<div class='container'>")
+print("<h1>📝 Riau Form Handler</h1>")
+
+// Display form
+print("<form method='GET' action=''>")
+print("<label>Enter your name:</label>")
+print("<input type='text' name='name' placeholder='Your name here'>")
+print("<input type='submit' value='Submit'>")
+print("</form>")
+
+// Process query string if exists
+print("<div class='result'>")
+print("<p><strong>Request Method:</strong> ")
+print(method)
+print("</p>")
+
+print("<p><strong>Query String:</strong> ")
+print(query)
+print("</p>")
+
+// Note: Full query string parsing would require string manipulation functions
+// For now, we just display the raw query string
+print("<p><em>Note: Full form parsing requires string functions (coming soon!)</em></p>")
+print("</div>")
+
+print("</div>")
+print("</body>")
+print("</html>")

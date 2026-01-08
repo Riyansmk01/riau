@@ -1,0 +1,143 @@
+# GitHub Actions workflow for creating binary releases
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build Linux x64
+        run: |
+          gcc -Wall -Wextra -std=c11 -O2 -static \
+            engine/lexer/lexer.c \
+            engine/ast/ast.c \
+            engine/parser/parser.c \
+            engine/semantic/semantic.c \
+            engine/bytecode/bytecode.c \
+            engine/bytecode/compiler.c \
+            engine/vm/vm.c \
+            engine/errors/error_reporter.c \
+            engine/cli/main.c \
+            -o riau-linux-x64 -lm
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: riau-linux-x64
+          path: riau-linux-x64
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build macOS x64
+        run: |
+          gcc -Wall -Wextra -std=c11 -O2 \
+            engine/lexer/lexer.c \
+            engine/ast/ast.c \
+            engine/parser/parser.c \
+            engine/semantic/semantic.c \
+            engine/bytecode/bytecode.c \
+            engine/bytecode/compiler.c \
+            engine/vm/vm.c \
+            engine/errors/error_reporter.c \
+            engine/cli/main.c \
+            -o riau-macos-x64 -lm
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: riau-macos-x64
+          path: riau-macos-x64
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup MinGW
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: mingw-w64-ucrt-x86_64-gcc
+      
+      - name: Build Windows x64
+        shell: msys2 {0}
+        run: |
+          gcc -Wall -Wextra -std=c11 -O2 \
+            engine/lexer/lexer.c \
+            engine/ast/ast.c \
+            engine/parser/parser.c \
+            engine/semantic/semantic.c \
+            engine/bytecode/bytecode.c \
+            engine/bytecode/compiler.c \
+            engine/vm/vm.c \
+            engine/errors/error_reporter.c \
+            engine/cli/main.c \
+            -o riau-windows-x64.exe -lm
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: riau-windows-x64.exe
+          path: riau-windows-x64.exe
+
+  create-release:
+    needs: [build-linux, build-macos, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            riau-linux-x64/riau-linux-x64
+            riau-macos-x64/riau-macos-x64
+            riau-windows-x64.exe/riau-windows-x64.exe
+          body: |
+            ## Riau Programming Language ${{ github.ref_name }}
+            
+            **The Best CGI Scripting Language**
+            
+            ### Installation
+            
+            **Linux/macOS**:
+            ```bash
+            curl -sSL https://riau-lang.github.io/install.sh | bash
+            ```
+            
+            **Windows**:
+            ```powershell
+            iwr https://riau-lang.github.io/install.ps1 | iex
+            ```
+            
+            ### Manual Download
+            
+            - **Linux**: `riau-linux-x64`
+            - **macOS**: `riau-macos-x64`
+            - **Windows**: `riau-windows-x64.exe`
+            
+            ### What's New
+            
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
+            
+            ### Documentation
+            
+            - [Installation Guide](https://github.com/${{ github.repository }}/blob/main/docs/INSTALLATION.md)
+            - [Quick Start](https://github.com/${{ github.repository }}/blob/main/README.md#quick-start)
+            - [Examples](https://github.com/${{ github.repository }}/tree/main/examples)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

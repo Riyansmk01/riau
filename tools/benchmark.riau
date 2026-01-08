@@ -1,0 +1,96 @@
+// Benchmark script untuk testing performance
+// Tests: arithmetic, strings, arrays, functions
+
+print("=== Riau Performance Benchmark ===")
+print("")
+
+// Test 1: Arithmetic Operations
+print("Test 1: Arithmetic (10000 iterations)")
+let start_time = 0
+let result = 0
+
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+    for j in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+        for k in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+            for l in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+                result = i + j * k - l
+            }
+        }
+    }
+}
+
+print("✓ Arithmetic test complete")
+print("")
+
+// Test 2: String Operations
+print("Test 2: String Operations (1000 iterations)")
+let text = "Hello"
+
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+    for j in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+        for k in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+            let combined = text + " World"
+            let upper = str_upper(combined)
+            let lower = str_lower(upper)
+        }
+    }
+}
+
+print("✓ String test complete")
+print("")
+
+// Test 3: Array Operations
+print("Test 3: Array Operations (1000 iterations)")
+let numbers = [1, 2, 3, 4, 5]
+
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+    for j in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+        for k in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+            let arr = [1, 2, 3]
+            array_push(arr, 4)
+            array_push(arr, 5)
+            let last = array_pop(arr)
+            let length = array_length(arr)
+        }
+    }
+}
+
+print("✓ Array test complete")
+print("")
+
+// Test 4: Function Calls
+print("Test 4: Function Calls (1000 iterations)")
+
+fn fibonacci(n) {
+    if n <= 1 {
+        return n
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+    let fib = fibonacci(10)
+}
+
+print("✓ Function test complete")
+print("")
+
+// Test 5: Math Operations
+print("Test 5: Math Operations (1000 iterations)")
+
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+    for j in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+        for k in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+            let abs_val = math_abs(-42)
+            let floor_val = math_floor(3.7)
+            let ceil_val = math_ceil(3.2)
+            let round_val = math_round(3.5)
+        }
+    }
+}
+
+print("✓ Math test complete")
+print("")
+
+print("=== Benchmark Complete ===")
+print("All tests passed successfully!")

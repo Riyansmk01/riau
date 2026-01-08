@@ -1,0 +1,42 @@
+{
+  "name": "riau",
+  "displayName": "Riau Language Support",
+  "description": "Language support for Riau programming language - The Best CGI Scripting Language",
+  "version": "0.1.0",
+  "publisher": "riau-lang",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "riau",
+    "cgi",
+    "web",
+    "scripting",
+    "backend"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "riau",
+        "extensions": [".riau"],
+        "aliases": ["Riau", "riau"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "riau",
+        "scopeName": "source.riau",
+        "path": "./syntaxes/riau.tmLanguage.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/riau"
+  },
+  "license": "MIT"
+}
