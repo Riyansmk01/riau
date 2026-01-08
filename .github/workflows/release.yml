@@ -28,7 +28,7 @@ jobs:
             -o riau-linux-x64 -lm
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: riau-linux-x64
           path: riau-linux-x64
@@ -53,7 +53,7 @@ jobs:
             -o riau-macos-x64 -lm
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: riau-macos-x64
           path: riau-macos-x64
@@ -86,7 +86,7 @@ jobs:
             -o riau-windows-x64.exe -lm
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: riau-windows-x64.exe
           path: riau-windows-x64.exe
@@ -98,7 +98,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
