@@ -14,7 +14,7 @@ Write-Host ""
 
 # Detect architecture
 $Arch = if ([Environment]::Is64BitOperatingSystem) { "x64" } else { "x86" }
-$Version = if ($env:RIAU_VERSION) { $env:RIAU_VERSION } else { "latest" }
+$Version = if ($env:RIAU_VERSION) { $env:RIAU_VERSION } else { "v0.1.1" }
 $InstallDir = if ($env:RIAU_INSTALL_DIR) { $env:RIAU_INSTALL_DIR } else { "$env:USERPROFILE\.riau" }
 $BinDir = "$InstallDir\bin"
 
@@ -26,24 +26,34 @@ Write-Host ""
 # Create directories
 New-Item -ItemType Directory -Force -Path $BinDir | Out-Null
 
-# Download URL - use 'latest' or specific version
-if ($Version -eq "latest") {
-    $DownloadUrl = "https://github.com/Riyansmk01/riau/releases/latest/download/riau-windows-$Arch.exe"
-}
-else {
-    $DownloadUrl = "https://github.com/Riyansmk01/riau/releases/download/$Version/riau-windows-$Arch.exe"
-}
-
+# Download URL - use specific version (not 'latest' to avoid redirect issues)
+$DownloadUrl = "https://github.com/Riyansmk01/riau/releases/download/$Version/riau-windows-$Arch.exe"
 $ExePath = "$BinDir\riau.exe"
 
 Write-Host "Downloading Riau..." -ForegroundColor Yellow
 Write-Host "URL: $DownloadUrl" -ForegroundColor Gray
 
 try {
-    # Use WebClient instead of Invoke-WebRequest (more stable for binaries)
-    $client = New-Object System.Net.WebClient
-    $client.DownloadFile($DownloadUrl, $ExePath)
-    Write-Host "✓ Riau downloaded to $ExePath" -ForegroundColor Green
+    # Use HttpClient with User-Agent (CRITICAL for GitHub stability)
+    $handler = New-Object System.Net.Http.HttpClientHandler
+    $client = New-Object System.Net.Http.HttpClient($handler)
+    
+    # REQUIRED: User-Agent header prevents GitHub from closing connection
+    $client.DefaultRequestHeaders.Add("User-Agent", "Riau-Installer/1.0")
+    
+    # Download binary
+    $response = $client.GetAsync($DownloadUrl).Result
+    
+    if ($response.IsSuccessStatusCode) {
+        $bytes = $response.Content.ReadAsByteArrayAsync().Result
+        [System.IO.File]::WriteAllBytes($ExePath, $bytes)
+        Write-Host "✓ Riau downloaded to $ExePath" -ForegroundColor Green
+    }
+    else {
+        throw "HTTP $($response.StatusCode): $($response.ReasonPhrase)"
+    }
+    
+    $client.Dispose()
 }
 catch {
     Write-Host "Error downloading Riau: $_" -ForegroundColor Red
@@ -52,6 +62,10 @@ catch {
     Write-Host "  1. Release not yet available (check: https://github.com/Riyansmk01/riau/releases)" -ForegroundColor Yellow
     Write-Host "  2. Network connection issue" -ForegroundColor Yellow
     Write-Host "  3. GitHub rate limit" -ForegroundColor Yellow
+    Write-Host "  4. Incorrect version tag (current: $Version)" -ForegroundColor Yellow
+    Write-Host "" -ForegroundColor Yellow
+    Write-Host "Try manual download:" -ForegroundColor Cyan
+    Write-Host "  $DownloadUrl" -ForegroundColor Gray
     exit 1
 }
 
