@@ -6,12 +6,12 @@
 
 **Linux/macOS**:
 ```bash
-curl -sSL https://riau-lang.github.io/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Riyansmk01/riau/main/install.sh | bash
 ```
 
 **Windows**:
 ```powershell
-iwr https://riau-lang.github.io/install.ps1 | iex
+iwr https://raw.githubusercontent.com/Riyansmk01/riau/main/install.ps1 | iex
 ```
 
 ### Verify

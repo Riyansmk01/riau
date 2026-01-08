@@ -1,5 +1,5 @@
 # Riau Language Installer for Windows
-# Usage: iwr https://riau-lang.github.io/install.ps1 | iex
+# Usage: iwr https://raw.githubusercontent.com/Riyansmk01/riau/main/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 

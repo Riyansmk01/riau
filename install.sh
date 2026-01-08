@@ -1,6 +1,6 @@
 #!/bin/bash
 # Riau Language Installer for Linux/macOS
-# Usage: curl -sSL https://riau-lang.github.io/install.sh | bash
+# Usage: curl -sSL https://raw.githubusercontent.com/Riyansmk01/riau/main/install.sh | bash
 
 set -e
 
